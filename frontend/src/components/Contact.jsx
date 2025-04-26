@@ -12,7 +12,7 @@ const Contact = () => {
     e.preventDefault();
     await axios
       .post(
-        "https://mern-stack-event-planning-project-virid.vercel.app/api/v1/message/send",
+        "http://localhost:4000/api/v1/message/send",
         {
           name,
           email,
