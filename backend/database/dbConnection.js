@@ -4,9 +4,21 @@ export const dbConnection = () => {
   mongoose
     .connect(process.env.MONGO_URI, { dbName: "MERN_APP_EVENT_MESSAGES" })
     .then(() => {
-      console.log("Connected to database!");
+      console.log("Connected to MongoDB database!");
     })
     .catch((err) => {
-      console.log("Some error occurred while connecting to database:", err);
+      console.error("Error occurred while connecting to MongoDB:", err);
     });
+
+  mongoose.connection.on("connected", () => {
+    console.log("Mongoose default connection is open");
+  });
+
+  mongoose.connection.on("error", (err) => {
+    console.error(`Mongoose connection error: ${err}`);
+  });
+
+  mongoose.connection.on("disconnected", () => {
+    console.log("Mongoose default connection is disconnected");
+  });
 };
