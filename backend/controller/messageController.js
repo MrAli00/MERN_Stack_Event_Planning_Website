@@ -15,6 +15,8 @@ export const sendMessage = async (req, res) => {
       message: "Message Sent Successfully!",
     });
   } catch (error) {
+    console.error("Error details:", error); // Log the error details
+  
     if (error.name === "ValidationError") {
       let errorMessage = "";
       if (error.errors.name) {
@@ -34,10 +36,10 @@ export const sendMessage = async (req, res) => {
         message: errorMessage,
       });
     }
-
+  
     return res.status(500).json({
       success: false,
       message: "Unknown Error",
     });
   }
-};
+}  
